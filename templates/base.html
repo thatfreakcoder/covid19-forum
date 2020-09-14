@@ -1,0 +1,36 @@
+{% extends 'bootstrap/base.html' %}
+	
+	{% block head %}
+		{{ ckeditor.load() }}
+		{{ super()}}
+	{% endblock %}
+	
+	{% block title %}
+		COVID 19
+	{% endblock %}
+
+	{% block navbar %}
+		{% include '_navbar.html' %}
+	{% endblock %}
+
+	{% block content %}
+	<br><br>
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			<ul class="list-group">
+			{% for category, message in messages %}
+				{% if category == 'danger' %}
+					<li class="alert alert-{{category}}"><span class="glyphicon glyphicon-remove-sign"></span> {{ message }} </li>
+				{% elif category == 'success' %}
+					<li class="alert alert-{{category}}"><span class="glyphicon glyphicon-ok-sign"></span> {{ message }}</li>
+				{% elif category == 'info' %}
+					<li class="alert alert-{{category}}"><span class="glyphicon glyphicon-info-sign"></span> {{ message }} </li>
+				{% else %}
+					<li class="alert alert-{{category}}"><span class="glyphicon glyphicon-exclamation-sign"></span> {{ message }} </li>
+				{% endif %}
+			{% endfor %}
+			</ul>
+		{% endwith %}
+		
+		{% block subcontent %}
+		{% endblock %}
+	{% endblock %}

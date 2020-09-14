@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+	{% block subcontent %}
+	<center>
+	
+	<div class="page-header" style="background-color: pink;">
+		<font size="10px"> {{ request[3] }}</font>
+	</div>
+	<div class="container" style="background-color: lightgreen;">
+		<h3>{{ request[4] | safe }}</h3>
+	</div>
+	<div class="container text-left">
+		<p><footer> Written By : <a href="/user/{{ request[1] }}/">{{ request[1] }}</a></footer></p>
+	</div>
+	
+	</center>
+	{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+	{% block subcontent %}
+
+	<div class="page-header">
+		<h1> {{ user[1] }} {{ user[2] }}<h5>(@{{ user[3] }} )</h5></h1>
+		<h3> {{ user[10] }}</h3>
+	</div>
+	<br>
+	<div class="container">
+		
+		State : {{ user[8] }}
+		<br>
+		City : {{ user[9] }}
+
+	</div>
+	<br>
+	<div class="container text-left">
+		<p> Contact Number : {{ user[7] }}</p>
+	</div>
+
+	{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+	{% block subcontent %}
+		{% if session['user'] == 'user' %}
+			<div class="text-center">
+				<h1> Write a Querry for the Doctor </h1>
+			</div>
+			<div>
+				<form method="POST" class="form-horizontal">
+			  		<div class="form-group">
+			    		<label class="control-label col-sm-2">Title: </label>
+			    		<div class="col-sm-5">
+			  				<input type="text" name="title" placeholder="Enter Title">
+						</div>
+			  		</div>
+
+			  		<div class="form-group">
+			    		<label class="control-label col-sm-2">Content:</label>
+			    		<div class="col-sm-5">
+			  				<textarea name="body" class="ckeditor"></textarea>
+						</div>
+			  		</div>
+
+			  		<div class="form-group">
+					    <label class="control-label col-md-2">Select Specialisation:</label>
+					    <select class="control-label col-sm-2" name="speciality">
+						      <option value="Mental Health">Mental Health</option>
+						      <option value="Physician">Physician</option>
+						      <option value="Psychiactrist">Psychiactrist</option>
+						      <option value="Pediatrician">Pediatrician</option>
+						      <option value="Gynaecologist">Gynaecologist</option>
+					    </select>
+					</div>
+			  		
+			  		<div class="form-row">
+			    		<div class="col-sm-offset-2 col-sm-10">
+			    			<button class="btn btn-primary"> Submit Form </button>
+			    		</div>
+			  		</div>
+
+			  	</form>
+		  	</div>
+
+		{% elif session['user'] == 'doctor' %}
+			<div class="text-center">
+				<h1> Write a Suggestion for General Public </h1>
+			</div>
+			<div>
+				<form method="POST" class="form-horizontal">
+			  		<div class="form-group">
+			    		<label class="control-label col-sm-2">Title: </label>
+			    		<div class="col-sm-5">
+			  				<input type="text" name="title" placeholder="Enter Title">
+						</div>
+			  		</div>
+
+			  		<div class="form-group">
+			    		<label class="control-label col-sm-2">Content:</label>
+			    		<div class="col-sm-5">
+			  				<textarea name="body" class="ckeditor"></textarea>
+						</div>
+			  		</div>
+
+			  		<div class="form-group">
+					    <label class="control-label col-md-2">Select Specialisation:</label>
+					    <select class="control-label col-sm-2" name="speciality">
+						      <option value="Mental Health">Mental Health</option>
+						      <option value="Physician">Physician</option>
+						      <option value="Psychiactrist">Psychiactrist</option>
+						      <option value="Pediatrician">Pediatrician</option>
+						      <option value="Gynaecologist">Gynaecologist</option>
+					    </select>
+					</div>
+			  		
+			  		<div class="form-row">
+			  			<div class="form-row">
+			    			<div class="col-sm-offset-2 col-sm-10">
+			    				<button class="btn btn-primary"> Submit Form </button>
+			    			</div>
+			  			</div>
+			  		</div>
+			  	</form>
+		  	</div>
+		 {% else %}	
+		 	<h1>Please Login to write a Query</h1>
+		{% endif %}
+
+	{% endblock %}

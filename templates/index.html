@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% block subcontent %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	font-family: Arial;
+	color: white;
+	background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPEwKZGcSrt1ggkeoXwGzi17HGiCQLOS2XNw33pdQ6KHnRZO_2&usqp=CAU");
+	background-position: left;
+	background-attachment: fixed;
+}
+blockquote{
+	color: black;
+	text-align: left;
+}
+.well{
+	border-radius: 20px;
+	box-shadow: 0 10px 20px rgb(0, 0, 0);
+	transition: transform .3s;
+ 	opacity: 0.7;
+}
+.well:hover{
+	transform: scale(1.1);
+	opacity: 1;
+
+}
+.split {
+  height: 80%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  overflow: auto;
+  bottom: 30px;
+  animation: fadeInAnimation ease 2s; 
+  animation-iteration-count: 1; 
+  animation-fill-mode: forwards; 
+} 
+@keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% {
+        opacity: 1;
+    }
+}
+
+.left {/*linear-gradient(to right, #7000ed, #340072)*/
+	left: 1%;
+	top: 15%;
+	padding: 4%;
+	position: absolute;
+	direction: rtl;
+	background-image: url("{{ url_for('static', filename='/images/leftbg.png') }}");
+	background-position: left;
+	background-attachment: fixed;
+    box-shadow: -10px 25px 28px 4px rgba(0, 0, 0, 0.22), 0 29px 26px 4px rgba(0, 0, 0, 0.19);
+    border-radius: 2.5rem;
+    width: 46%;
+}
+
+.right {
+ 	right: 1%;
+ 	top: 15%;
+	padding: 4%;
+	position: absolute;
+	padding-top: 2%;
+	background-image: url("{{ url_for('static', filename='/images/rightbg.jpg') }}");
+	background-position: right;
+	background-attachment: fixed;
+    box-shadow: -10px 25px 28px 0 rgba(0, 0, 0, 0.2), 0 29px 26px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 2.5rem;
+    width: 46%;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 800px) {
+	.left {
+		left: 2%;
+		right: 2%;
+		width: 98%;
+		position: relative;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.right {
+		left: 2%;
+		top: 80%;
+		right: 2%;
+		width: 98%;
+		position: relative;
+	}
+}
+</style>
+</head>
+<body>
+<font color="Black">
+<div class="group">
+<div class="split left">
+	<blockquote>
+		<h1>Public Queries</h1>
+	</blockquote>
+    {% for query in u_queries %}
+	<a href="/user/view-query/{{ query[0] }}/">
+		<div class="well" onload="show()">
+			<blockquote>
+				<h3>{{ query[2] }}</h3>
+				<footer><a href="/user/{{ query[5] }}/">Written By : {{ query[1] }}</a></footer>
+			</blockquote>
+		</div>
+	</a>
+		<br>
+	{% endfor %}
+</div>
+
+<div class="split right">
+	<blockquote>
+		<h1>Doctor Suggestions & Tips</h1>
+	</blockquote>
+    {% for query in d_queries %}
+    <a href="/doc/view-query/{{ query[0] }}/">
+		<div class="well">
+			<blockquote>
+				<h3>{{ query[2] }}</h3>
+				<footer>Written By : <a href="/doc/{{ query[5] }}/">{{ query[1] }}</a></footer>
+			</blockquote>
+		</div>
+	</a>
+		<br>
+	{% endfor %}
+</div>
+</div>
+</font>
+</body><!-- 
+<script type="text/javascript">
+	var x = document.getElementsByClassName("well");
+	function show(){
+		x.style.opacity='1';
+	}
+</script> -->
+{% endblock %}

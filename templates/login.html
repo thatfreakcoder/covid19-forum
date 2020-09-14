@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block subcontent %}
+<style type="text/css">
+body{
+    background-image: url("{{url_for('static', filename='images/background_login.jpg') }}");
+    background-position: left;
+    background-attachment: fixed;
+}
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-radius: 4.5rem;
+}
+.login-logo{
+    position: relative;
+    margin-left: -41.5%;
+}
+.login-logo img{
+    position: absolute;
+    width: 20%;
+    margin-top: 19%;
+    background: #282726;
+    border-radius: 4.5rem;
+    padding: 5%;
+}
+.login-form-1{
+    padding: 9%;
+    background:#282726;
+    box-shadow: -10px 25px 28px 0 rgba(0, 0, 0, 0.2), 0 29px 26px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 4.5rem;
+}
+.login-form-1 h3{
+    text-align: center;
+    margin-bottom:12%;
+    color:#fff;
+}
+.login-form-2{
+    padding: 9%;
+    background: #f05837;
+    box-shadow: -10px 25px 28px 0 rgba(0, 0, 0, 0.2), 0 29px 26px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 4.5rem;
+}
+.login-form-2 h3{
+    text-align: center;
+    margin-bottom:12%;
+    color: #fff;
+}
+.btnSubmit{
+    font-weight: 600;
+    width: 50%;
+    color: #282726;
+    background-color: #fff;
+    border: none;
+    border-radius: 1.5rem;
+    padding:2%;
+    transition: transform .1s
+}
+.btnSubmit:active{
+  transform: scale(0.8);
+}
+.btnForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.btnForgetPwd:hover{
+    text-decoration:none;
+    color:pink;
+}
+input[type=text], input[type=password]{
+  border-radius: 4px;
+  transition: transform .5s
+}
+input[type=text]:focus, input[type=password]:focus, .form-group{
+  transform: scaleX(1.1);
+}
+</style>
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <h3><span class="glyphicon glyphicon-user"></span> Login as User</h3>
+            <form method="POST" action="/login/user/">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter Username" name="username" />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="password" class="form-control" placeholder="Enter Password" name="password" id="userpass" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" onclick="showuser()"><i class="glyphicon glyphicon-eye-open"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="Login" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 login-form-2">
+            <div class="login-logo">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span> Login as Doctor</h3>
+            <form method="POST" action="/login/doc/">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter Username" name="username" />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                    <input type="password" class="form-control" placeholder="Enter Password" name="password" id="docpass">
+                    <span class="input-group-btn">
+                        <button type="button" onclick="showdoc()" class="btn btn-default"><i id="eye" class="glyphicon glyphicon-eye-close"></i></button>
+                    </span>
+                </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="Login" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var upwd = document.getElementById("userpass");
+    var dpwd = document.getElementById("docpass");
+    
+    function showuser() {
+        if (upwd.type == "password"){
+            upwd.type = "text";
+        }
+        else {
+            upwd.type = "password";
+        }
+    }
+    function showdoc(){
+        if (dpwd.type == "password"){
+            dpwd.type = "text";
+        }
+        else {
+            dpwd.type = "password";
+        }
+    }
+</script>
+{% endblock %}

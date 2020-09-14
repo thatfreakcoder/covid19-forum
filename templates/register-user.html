@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block subcontent %}
+<div class="text-center">
+	<h1>User Registration Form </h1>
+</div>
+
+<div>
+	<br><br>
+	<form method="POST" class="form-horizontal" name="f1">
+		<div class="form-row">
+    		<label class="control-label col-md-2">First Name:</label>
+    		<div class="col-sm-1">
+  				<input type="text" name="firstname" placeholder="Enter First Name">
+			</div>
+  		</div>
+
+  		<div class="form-row">
+    		<label class="control-label col-md-2">Last Name:</label>
+    		<div class="col-sm-1">
+  				<input type="text" name="lastname" placeholder="Enter Last Name">
+			</div>
+  		</div>
+
+  		<div class="form-group">
+    		<label class="control-label col-md-2">Contact Number:</label>
+    		<div class="col-sm-1">
+  				<input type="text" name="contact_number" placeholder="Enter Last Name">
+			</div>
+  		</div>
+  		
+  		<div class="form-row">
+    		<label class="control-label col-sm-2">Email:</label>
+    		<div class="col-sm-1">
+  				<input type="email" name="email" placeholder="Enter Email">
+			</div>
+  		</div>
+
+  		<div class="form-group">
+    		<label class="control-label col-md-2">Username:</label>
+    		<div class="col-sm-1">
+  				<input type="text" name="username" placeholder="Enter Username">
+			</div>
+  		</div>
+
+  		<div class="form-row">
+    		<label class="control-label col-md-2">Password:</label>
+    		<div class="col-sm-1">
+  				<input type="password" name="password" placeholder="Enter Password">
+			</div>
+  		</div>
+  		
+  		<div class="form-group">
+    		<label class="control-label col-sm-2">Confirm Password:</label>
+    		<div class="col-sm-4">
+  				<input type="password" name="confirm_password" placeholder="Confirm Password">
+			</div>
+  		</div>
+		
+		<div class="form-row">
+    		<label class="control-label col-md-2">State:</label>
+    		<div class="col-sm-1">
+  				<input type="text" name="state" placeholder="Enter First Name">
+			</div>
+  		</div>
+
+  		<div class="form-row">
+    		<label class="control-label col-md-2">City:</label>
+    		<div class="col-sm-1">
+  				<input type="text" name="city" placeholder="Enter Last Name">
+			</div>
+  		</div>
+
+  		<div class="form-group">
+    		<label class="control-label col-md-2">Postal Code:</label>
+    		<div class="col-sm-1">
+  				<input type="text" name="post_code" placeholder="Enter Last Name">
+			</div>
+  		</div>
+
+  		<div class="form-row">
+    		<label class="control-label col-md-2">Latitude:</label>
+    		<div class="col-sm-1">
+  				<input type="text" name="lati" id="lati" placeholder="Your Latitude" maxlength="9">
+			</div>
+  		</div>
+
+  		<div class="form-group">
+    		<label class="control-label col-md-2">Longitude:</label>
+    		<div class="col-sm-1">
+  				<input type="text" name="longi" id="longi" placeholder="Your Longitude" maxlength="9">
+			</div>
+  		</div>
+  		
+  		<div class="form-group">
+    		<div class="col-sm-offset-2 col-sm-10">
+    			<input type="button" class="btn btn-success" onclick="getLocation()" value="Get Coordinates" id="latlong">
+    		</div>
+  		</div>
+  		
+		<div class="form-group">
+		    <label class="control-label col-md-2">Select Gender</label>
+		    <select class="control-label col-sm-2" name="gender">
+			      <option value="Male">Male</option>
+			      <option value="Female">Female</option>
+			      <option value="Other">Prefer not to Say</option>
+		    </select>
+		</div>
+  		
+  		<div class="form-group">
+    		<div class="col-sm-offset-2 col-sm-10">
+    			<input type="submit" class="btn btn-info" value="Submit Form">
+    			<br><br>
+    		</div>
+  		</div>
+	</form>
+</div>
+<script>
+  var btn = document.getElementById("latlong");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+function showPosition(position) {
+    alert("Please Copy the following into the respective textboxex\nLatitude = " + position.coords.latitude + "\n" + "Longitude = " + position.coords.longitude);
+}
+</script>
+
+{% endblock %}

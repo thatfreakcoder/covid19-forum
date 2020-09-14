@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block subcontent %}
+
+	<div class="panel-group">
+		{% if requests %}
+		    <div class="panel panel-primary">
+		    	<div class="panel-heading"><h1>Requests Received for {{ session['speciality'] }} : </h1></div>
+		    	<div class="panel-body">
+		      		<table class="table table-hover">
+						{% for request in requests %}
+							<tr>
+								<td><ul type="1" class="list-group">
+										<li class="list-group-items">
+											<blockquote>
+												<h3><a href="/doc/view-request/{{ request[0] }}/">{{ request[3] }}</a></h3>
+												<footer>Written By : <a href="/user/{{ request[1] }}/">{{ request[1] }}</a></footer>
+											</blockquote>
+								</td>
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+		{% else %}
+		    <div class="panel panel-danger">
+		    	<div class="panel-heading"><h1>You Have Not Received Any Request</h1></div>
+		    </div>
+		{% endif %}
+	</div>		
+
+{% endblock %}

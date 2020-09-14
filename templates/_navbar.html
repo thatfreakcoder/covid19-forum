@@ -1,0 +1,129 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.btn-success, .btn-primary {
+  width: 46%;
+  margin-left: 10px;
+}
+.navbar {
+  overflow: hidden;
+  background-color: #1c1c1c;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar .icon {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .navbar a:not(:first-child) {display: none;}
+  .navbar ul:not(:first-child) {display: none;}
+  .navbar button:not(:first-child) {display: none;}
+  .navbar a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .navbar.responsive {position: relative;}
+  .navbar.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbar.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .navbar.responsive button {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .navbar.responsive ul {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="navbar" id="myTopnav">
+  {% if session['login'] != True %}
+  <a href="/">COVID - 19 HelpDesk</a>
+  <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#writeQueryModal" style="background-color: #1c1c1c; color: white">Write a Post</button>
+  <button type="button" class="btn btn-lg nav navbar-nav navbar-right" data-target="#RegisterModal" style="background-color: #1c1c1c; color: white"><span class="glyphicon glyphicon-user"></span> Sign Up </button>
+  <button type="button" class="btn btn-lg nav navbar-nav navbar-right" style="background-color: #1c1c1c; color: white"><a href="/login/"><span class="glyphicon glyphicon-log-in"></span> Login </button> 
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+
+  <!-- Post Modal -->
+  <div class="modal fade" id="writeQueryModal" role="dialog">
+    <div class="modal-dialog modal-bg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color: black">Select the Type of Post You Want to Make</h4>
+        </div>
+        <div class="modal-body">
+          <button class="btn btn-success"><a href="/write-query/public/" >Open to Public </a></button>
+          <button class="btn btn-primary"><a href="/write-query/private/">Speciality Specific</a></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Registeration Modal -->
+  <div class="modal fade" id="RegisterModal" role="dialog">
+    <div class="modal-dialog modal-bg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color: black">Select the Type of User You Want to Register as</h4>
+        </div>
+        <div class="modal-body">
+          <button class="btn btn-success"><a href="/register/user/" >Register as a User</a></button>
+          <button class="btn btn-primary"><a href="/register/doc/">Register as a Doctor</a></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "navbar") {
+    x.className += " responsive";
+  } else {
+    x.className = "navbar";
+  }
+}
+</script>
+
+</body>
