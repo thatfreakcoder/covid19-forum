@@ -67,11 +67,19 @@ body {
 <body>
 
 <div class="navbar" id="myTopnav">
-  {% if session['login'] != True %}
   <a href="/">COVID - 19 HelpDesk</a>
   <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#writeQueryModal" style="background-color: #1c1c1c; color: white">Write a Post</button>
-  <button type="button" class="btn btn-lg nav navbar-nav navbar-right" data-target="#RegisterModal" style="background-color: #1c1c1c; color: white"><span class="glyphicon glyphicon-user"></span> Sign Up </button>
-  <button type="button" class="btn btn-lg nav navbar-nav navbar-right" style="background-color: #1c1c1c; color: white"><a href="/login/"><span class="glyphicon glyphicon-log-in"></span> Login </button> 
+  {% if session['login'] == True %}
+    {% if session['user'] == 'user' %}
+      <a href="/user/{{session['username']}}/my-queries/">View My Queries</a></li>
+      <a href="/user/{{session['username']}}/" class="navbar-nav navbar-right"><span class="glyphicon glyphicon-user"></span> {{session['firstname']}}</a>
+    {% endif %}
+    <a href="/logout/" class="navbar-nav navbar-right"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+
+  {% elif session['login'] != True %}
+    <button type="button" class="btn btn-lg nav navbar-nav navbar-right" data-toggle="modal" data-target="#RegisterModal" style="background-color: #1c1c1c; color: white"><span class="glyphicon glyphicon-user"></span> Sign Up</button>
+    <button type="button" class="btn btn-lg nav navbar-nav navbar-right" data-toggle="modal" data-target="#RegisterModal" style="background-color: #1c1c1c; color: white"><span class="glyphicon glyphicon-log-in"></span> Log In</button>
+  {% endif %}
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
@@ -113,7 +121,6 @@ body {
       </div>
     </div>
   </div>
-  {% endif %}
 </div>
 <script>
 function myFunction() {
